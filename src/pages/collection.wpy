@@ -1,0 +1,36 @@
+<style lang="less">
+
+</style>
+<template>
+  <div class="container">
+    <text>这是我的收藏页</text>
+  </div>
+</template>
+
+<script>
+  import wepy from '@wepy/core'
+  wepy.page({
+    data: {
+    },
+
+    computed: {
+
+    },
+
+    methods: {
+    },
+
+    created () {
+    },
+    onLoad(){
+    }
+  });
+</script>
+<config>
+{
+    navigationBarTitleText: '我的收藏',
+    usingComponents: {
+      "slide-view": "module:miniprogram-slide-view",
+    }
+}
+</config>

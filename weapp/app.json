@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/index",
+    "pages/my",
+    "pages/collection",
+    "pages/message"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index",
+        "text": "首页",
+        "iconPath": "./assets/images/home.png",
+        "selectedIconPath": "./assets/images/home_active.png"
+      },
+      {
+        "pagePath": "pages/collection",
+        "text": "收藏",
+        "iconPath": "./assets/images/collection.png",
+        "selectedIconPath": "./assets/images/collection_active.png"
+      },
+      {
+        "pagePath": "pages/message",
+        "text": "消息",
+        "iconPath": "./assets/images/message.png",
+        "selectedIconPath": "./assets/images/message_active.png"
+      },
+      {
+        "pagePath": "pages/my",
+        "text": "我的",
+        "iconPath": "./assets/images/my.png",
+        "selectedIconPath": "./assets/images/my_active.png"
+      }
+    ]
+  },
+  "component": true,
+  "usingComponents": {},
+  "sitemapLocation": "sitemap38.json"
+}

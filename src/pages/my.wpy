@@ -1,0 +1,77 @@
+<style lang="less" scoped>
+.my{
+  .top{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5px;
+    .scan-img{
+      height: 25px;
+      width: 25px;
+    }
+    .write-text{
+      color: rgb(199, 127, 127);
+    }
+  }
+  .info-wrap{
+    margin-top: 30px;
+    padding: 0 15px;
+    .avatar{
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+    }
+  }
+}
+.text{
+  font-size: 25px;
+  color: yellowgreen;
+}
+</style>
+<template>
+  <div class="my">
+    <div class="top">
+      <img src="../assets/images/scan.png" alt="" class="scan-img" @tap="scan"/>
+      <text class="write-text">写文章</text>
+    </div>
+    <div class="info-wrap">
+      <img src="https://www.dzyong.com/blog/backstage/images/1559724789.jpg" alt="头像" class="avatar">
+      <div class="info-text">
+        <p>No</p>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  import wepy from '@wepy/core'
+  wepy.page({
+    data: {
+    },
+
+    computed: {
+
+    },
+
+    methods: {
+      scan(){
+        console.log('扫一扫')
+        wx.scanCode({
+          success(res){
+            console.log(res)
+          }
+        })
+      }
+    },
+
+    created () {
+      console.log(this.$parent.globalData)
+    },
+    onLoad(){
+    }
+  });
+</script>
+<config>
+{
+    navigationBarTitleText: '我的页面',
+}
+</config>

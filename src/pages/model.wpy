@@ -1,0 +1,33 @@
+<style lang="less">
+
+</style>
+<template>
+  <div>
+      <text>这是消息详情页</text>
+  </div>
+</template>
+
+<script>
+  import wepy from '@wepy/core'
+  wepy.page({
+    data: {
+    },
+
+    computed: {
+
+    },
+
+    methods: {
+    },
+
+    created () {
+    },
+    onLoad(){
+    }
+  });
+</script>
+<config>
+{
+    navigationBarTitleText: '我的消息',
+}
+</config>

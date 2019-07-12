@@ -1,0 +1,84 @@
+<style lang="less">
+.container{
+  width: 100%;
+  text-align:left;
+}
+</style>
+<wxs module="m1" lang="babel">
+const getTime = (time) => {
+  let date = getDate(time);
+  let hour = date.getHours();
+  let mins = date.getMinutes();
+  let sec = date.getSeconds();
+  let milli = date.getMilliseconds();
+  return `${hour}:${mins}:${sec}.${milli}`;
+}
+module.exports.getTime = getTime;
+</wxs>
+<template>
+  <div>
+    <span>测试请求数据</span>
+    <div v-for="(article) in articles" :key="article.id">
+      <text>{{article.title}}</text>
+    </div>
+  </div>
+</template>
+
+<script> 
+  import wepy from '@wepy/core'
+  import eventHub from '../common/eventHub';
+  import { mapState } from '@wepy/x';
+  import store from '../store';
+  import testMixin from '../mixins/test'
+
+  wepy.page({
+    store,
+
+    // hooks: {
+    //   // Page 级别 hook, 只对当前 Page 的 setData 生效。
+    //   'before-setData': function (data) {
+    //     console.log('数据发生了改变：',data)
+    //     return data
+    //   }
+    // },
+
+    mixins: [testMixin],
+
+    data: {
+      articles:[],
+      num: 0
+    },
+
+    created () {
+      wx.request({
+        url: 'https://www.dzyong.com/blog/php/article/selectAll/', //仅为示例，并非真实的接口地址
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success:(res)=> {
+          console.log(res.data)
+          this.articles = res.data
+          console.log(this.articles[0].title)
+        }
+      })
+    },
+
+    computed: {
+      // ...mapState([ 'counter' ]),
+
+    },
+
+    methods: {
+    },
+
+    
+  });
+</script>
+<config>
+{
+    navigationBarTitleText: '首页标题',
+    usingComponents: {
+      "slide-view": "module:miniprogram-slide-view",
+    }
+}
+</config>

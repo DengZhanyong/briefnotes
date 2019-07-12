@@ -1,0 +1,13 @@
+
+<view class="my">
+  <view class="top">
+    <image src="../assets/images/scan.png" alt="" data-wpy-evt="6-0" bindtap="_proxy" class="scan-img"></image>
+    <text class="write-text">写文章</text>
+  </view>
+  <view class="info-wrap">
+    <image src="https://www.dzyong.com/blog/backstage/images/1559724789.jpg" alt="头像" class="avatar">
+    <view class="info-text">
+      <view>No</view>
+    </view>
+  </image></view>
+</view>
