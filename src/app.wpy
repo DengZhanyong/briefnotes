@@ -46,10 +46,11 @@ wepy.app({
 <config>
 {
     pages: [
-      'pages/index',
       'pages/my',
+      'pages/index',
       'pages/collection',
       'pages/message',
+      'pages/my/aa',
     ],
     window: {
       backgroundTextStyle: 'light',

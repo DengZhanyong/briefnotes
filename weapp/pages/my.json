@@ -1,5 +1,8 @@
 {
     "navigationBarTitleText": "我的页面",
     "component": true,
-    "usingComponents": {}
+    "usingComponents": {
+        "jump-button": "../components/jump-button",
+        "Interlayer": "../components/Interlayer"
+    }
 }

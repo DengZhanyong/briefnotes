@@ -9,7 +9,6 @@ _core["default"].page({
   computed: {},
   methods: {
     scan: function scan() {
-      console.log('扫一扫');
       wx.scanCode({
         success: function success(res) {
           console.log(res);
@@ -17,11 +16,23 @@ _core["default"].page({
       });
     }
   },
-  created: function created() {
-    console.log(this.$parent.globalData);
-  },
+  created: function created() {},
   onLoad: function onLoad() {}
-}, {info: {"components":{},"on":{}}, handlers: {'6-0': {"tap": function proxy () {
+}, {info: {"components":{"jump-button":{"path":"..\\components\\jump-button"},"Interlayer":{"path":"..\\components\\Interlayer"}},"on":{}}, handlers: {'5-0': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.scan($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"jump-button":{"path":"..\\components\\jump-button"},"Interlayer":{"path":"..\\components\\Interlayer"}},"on":{}}, handlers: {'5-0': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.scan($event)
+      })();
+    
+  }}}, models: {} }, {info: {"components":{"jump-button":{"path":"..\\components\\jump-button"},"Interlayer":{"path":"..\\components\\Interlayer"}},"on":{}}, handlers: {'5-0': {"tap": function proxy () {
     var $event = arguments[arguments.length - 1];
     var _vm=this;
       return (function () {

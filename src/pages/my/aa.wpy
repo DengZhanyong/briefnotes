@@ -1,0 +1,33 @@
+<style lang="less">
+
+</style>
+<template>
+  <div>
+      <text>简记会员</text>
+  </div>
+</template>
+
+<script>
+  import wepy from '@wepy/core'
+  wepy.page({
+    data: {
+    },
+
+    computed: {
+
+    },
+
+    methods: {
+    },
+
+    created () {
+    },
+    onLoad(){
+    }
+  });
+</script>
+<config>
+{
+    navigationBarTitleText: '简记会员',
+}
+</config>

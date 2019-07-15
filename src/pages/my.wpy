@@ -3,13 +3,45 @@
   .top{
     display: flex;
     justify-content: space-between;
-    padding: 0 5px;
+    padding: 0 12px;
     .scan-img{
       height: 25px;
       width: 25px;
     }
     .write-text{
       color: rgb(199, 127, 127);
+    }
+  }
+  .center{
+    margin: 20px 10px 10px;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 4px #cccccc;
+    .top{
+      border-bottom: 1px solid #eeeeee;
+      padding:0 5px 8px;
+      .info{
+        font-size: 12px;
+        color: #999;
+        margin-right: 3px;
+      }
+    }
+    .list{
+      display: flex;
+      justify-content: space-around;
+      padding: 12px;
+      .item{
+        display: inline-block;
+        text-align: center;
+        .img{
+          height: 30px;
+          width: 30px;
+        }
+      }
+      .desc{
+        font-size: 10px;
+        color: #999;
+      }
     }
   }
   .info-wrap{
@@ -19,7 +51,29 @@
       height: 60px;
       width: 60px;
       border-radius: 50%;
+      float: left;
     }
+    .info-text{
+      display: inline-block;
+      padding-left: 15px;
+      view{
+        margin: 5px 0;
+        .title{
+          color: #666666;
+        }
+        .data{
+          margin-left: 4px;
+          margin-right: 1em;
+        }
+      }
+      .name{
+        font-size: 18px;
+        font-weight: 600;
+      }
+    }
+  }
+  .buttom-group{
+    margin: 15px 0 0;
   }
 }
 .text{
@@ -34,11 +88,53 @@
       <text class="write-text">写文章</text>
     </div>
     <div class="info-wrap">
-      <img src="https://www.dzyong.com/blog/backstage/images/1559724789.jpg" alt="头像" class="avatar">
+      <img src="https://www.dzyong.com/blog/backstage/images/1559724789.jpg" alt="头像" class="avatar"/>
       <div class="info-text">
-        <p>No</p>
+        <p class="name">November_553b</p>
+        <p><span class="title">关注</span><span class="data">0</span><span class="title">粉丝</span><span class="data">0</span></p>
       </div>
     </div>
+    <div class="center">
+      <div class="top">
+        <span><span>简币：</span><span>200</span></span>
+        <span><span class="info">查看</span></span>
+      </div>
+      <div class="list">
+        <div class="item">
+          <img src="../assets/images/my-note.png" alt="我的文章" class="img"/>
+          <p>我的文章</p>
+          <p class="desc">2篇私密</p>
+        </div>
+        <div class="item">
+          <img src="../assets/images/my-article.png" alt="我的日记" class="img"/>
+          <p>我的日记</p>
+          <p class="desc"></p>
+        </div>
+        <div class="item">
+          <img src="../assets/images/my-collect.png" alt="赞与收藏" class="img"/>
+          <p>赞与收藏</p>
+          <p class="desc"></p>
+        </div>
+        <div class="item">
+          <img src="../assets/images/my-task.png" alt="奖励任务" class="img"/>
+          <p>简历任务</p>
+          <p class="desc"></p>
+        </div>
+      </div>
+    </div>
+    <div class="buttom-group">
+      <jump-button title="简记会员" pageUrl="my/aa"/>
+      <jump-button title="简记活动" pageUrl="" info="最新的活动都在这里"/>
+      <jump-button title="浏览历史" pageUrl=""/>
+      <jump-button title="我的专题/文集" pageUrl=""/>
+    </div>
+    <Interlayer/>
+    <div class="buttom-group">
+      <jump-button title="夜间模式" pageUrl=""/>
+      <jump-button title="设置" pageUrl=""/>
+      <jump-button title="帮助与反馈" pageUrl="" info="有问题找这里"/>
+    </div>
+    <Interlayer/>
   </div>
 </template>
 
@@ -54,7 +150,6 @@
 
     methods: {
       scan(){
-        console.log('扫一扫')
         wx.scanCode({
           success(res){
             console.log(res)
@@ -64,7 +159,6 @@
     },
 
     created () {
-      console.log(this.$parent.globalData)
     },
     onLoad(){
     }
@@ -73,5 +167,9 @@
 <config>
 {
     navigationBarTitleText: '我的页面',
+    usingComponents:{
+      "jump-button": "../components/jump-button",
+      "Interlayer": "../components/Interlayer"
+    }
 }
 </config>

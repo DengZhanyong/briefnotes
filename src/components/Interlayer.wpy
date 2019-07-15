@@ -1,0 +1,16 @@
+<style lang="less">
+.Interlayer{
+    height: 18px;
+    background: #eeeeee;
+}
+</style>
+<template>
+  <view class="Interlayer"></view>
+</template>
+
+<script>
+  import wepy from '@wepy/core'
+  wepy.component({
+  })
+</script>
+

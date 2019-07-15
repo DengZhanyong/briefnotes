@@ -1,13 +1,55 @@
 
 <view class="my">
   <view class="top">
-    <image src="../assets/images/scan.png" alt="" data-wpy-evt="6-0" bindtap="_proxy" class="scan-img"></image>
+    <image src="../assets/images/scan.png" alt="" data-wpy-evt="5-0" bindtap="_proxy" class="scan-img"></image>
     <text class="write-text">写文章</text>
   </view>
   <view class="info-wrap">
-    <image src="https://www.dzyong.com/blog/backstage/images/1559724789.jpg" alt="头像" class="avatar">
+    <image src="https://www.dzyong.com/blog/backstage/images/1559724789.jpg" alt="头像" class="avatar"></image>
     <view class="info-text">
-      <view>No</view>
+      <view class="name">November_553b</view>
+      <view><label class="title">关注</label><label class="data">0</label><label class="title">粉丝</label><label class="data">0</label></view>
     </view>
-  </image></view>
+  </view>
+  <view class="center">
+    <view class="top">
+      <label><label>简币：</label><label>200</label></label>
+      <label><label class="info">查看</label></label>
+    </view>
+    <view class="list">
+      <view class="item">
+        <image src="../assets/images/my-note.png" alt="我的文章" class="img"></image>
+        <view>我的文章</view>
+        <view class="desc">2篇私密</view>
+      </view>
+      <view class="item">
+        <image src="../assets/images/my-article.png" alt="我的日记" class="img"></image>
+        <view>我的日记</view>
+        <view class="desc"></view>
+      </view>
+      <view class="item">
+        <image src="../assets/images/my-collect.png" alt="赞与收藏" class="img"></image>
+        <view>赞与收藏</view>
+        <view class="desc"></view>
+      </view>
+      <view class="item">
+        <image src="../assets/images/my-task.png" alt="奖励任务" class="img"></image>
+        <view>简历任务</view>
+        <view class="desc"></view>
+      </view>
+    </view>
+  </view>
+  <view class="buttom-group">
+    <jump-button bind_init="_initComponent" title="简记会员" pageUrl="my/aa"></jump-button>
+    <jump-button bind_init="_initComponent" title="简记活动" pageUrl="" info="最新的活动都在这里"></jump-button>
+    <jump-button bind_init="_initComponent" title="浏览历史" pageUrl=""></jump-button>
+    <jump-button bind_init="_initComponent" title="我的专题/文集" pageUrl=""></jump-button>
+  </view>
+  <Interlayer bind_init="_initComponent"></Interlayer>
+  <view class="buttom-group">
+    <jump-button bind_init="_initComponent" title="夜间模式" pageUrl=""></jump-button>
+    <jump-button bind_init="_initComponent" title="设置" pageUrl=""></jump-button>
+    <jump-button bind_init="_initComponent" title="帮助与反馈" pageUrl="" info="有问题找这里"></jump-button>
+  </view>
+  <Interlayer bind_init="_initComponent"></Interlayer>
 </view>
