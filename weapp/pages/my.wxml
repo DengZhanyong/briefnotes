@@ -1,7 +1,7 @@
 
 <view class="my">
   <view class="top">
-    <image src="../assets/images/scan.png" alt="" data-wpy-evt="5-0" bindtap="_proxy" class="scan-img"></image>
+    <image src="../assets/images/scan.png" alt="" data-wpy-evt="6-0" bindtap="_proxy" class="scan-img"></image>
     <text class="write-text">写文章</text>
   </view>
   <view class="info-wrap">

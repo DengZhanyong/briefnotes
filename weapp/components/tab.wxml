@@ -1,0 +1,35 @@
+
+<view class="tab">
+  
+  <view id="aa"></view>
+  <view class="title">
+    <view wx:for="{{title}}" wx:key="{{item}}" data-idx="{{index}}" data-wpy-evt="19-100" bindtap="_proxy" class="aa">
+      <text>{{item}}</text>
+    </view>
+    <view style="left:{{titleSelPositon[currentIndex].left}}px;width:{{titleSelPositon[currentIndex].width}}px" class="headerLineSel"></view>
+  </view>
+
+  
+  <swiper current="{{currentIndex}}" data-wpy-evt="19-101" bindchange="_proxy" class="swiper">
+    <swiper-item class="swiper">
+      <view>
+        <slot name="c1"></slot>
+      </view>
+    </swiper-item>
+    <swiper-item class="swiper">
+      <view>
+        <slot name="c2"></slot>
+      </view>
+    </swiper-item>
+    <swiper-item class="swiper">
+      <view>
+        <slot name="c3"></slot>
+      </view>
+    </swiper-item>
+    <swiper-item class="swiper">
+      <view>
+        <slot name="c4"></slot>
+      </view>
+    </swiper-item>
+  </swiper>
+</view>

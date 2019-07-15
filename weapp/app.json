@@ -1,7 +1,7 @@
 {
     "pages": [
-        "pages/my",
         "pages/index",
+        "pages/my",
         "pages/collection",
         "pages/message",
         "pages/my/aa"

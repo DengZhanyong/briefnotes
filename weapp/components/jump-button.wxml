@@ -1,5 +1,5 @@
 
-<view data-wpy-evt="18-0" bindtap="_proxy" class="jump-button">
+<view data-wpy-evt="20-0" bindtap="_proxy" class="jump-button">
   <label>{{title}}</label>
   <label><label class="info">{{info}}</label><image src="../assets/images/right-arrow.png" alt="" class="icon"></image></label>
 </view>

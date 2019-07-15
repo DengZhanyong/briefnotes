@@ -1,18 +1,11 @@
-page {
-  height: 100%;
-}
-.index {
-  width: 100%;
-  height: 100%;
-}
-.index .tab {
+.tab {
   height: 100%;
   min-height: 100%;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
 }
-.index .tab .title {
+.tab .title {
   position: relative;
   width: 100%;
   height: 88rpx;
@@ -22,7 +15,7 @@ page {
   justify-content: flex-start;
   border-bottom: 1px solid #dddddd;
 }
-.index .tab .title .titleSel {
+.tab .title .titleSel {
   color: #5f6fee;
   font-size: 32rpx;
   display: flex;
@@ -30,7 +23,7 @@ page {
   align-items: center;
   margin: 0 10px;
 }
-.index .tab .title .headerLineSel {
+.tab .title .headerLineSel {
   position: absolute;
   background: #5f6fee;
   height: 6rpx;
@@ -38,35 +31,16 @@ page {
   transition: all 0.5s;
   bottom: 0;
 }
-.index .tab .swiper {
+.tab .swiper {
   width: 100%;
   flex: 1;
-  min-height: calc(100% - 55px);
-  overflow: auto;
+  height: 100vh;
+  overflow: scroll;
 }
-.index .tab .swiper .recordItem {
+.tab .swiper .recordItem {
   margin-top: 10rpx;
   background-color: white;
   padding-bottom: 20rpx;
   padding-top: 20rpx;
-}
-.index .tab .swiper .swiper-item {
-  min-height: 100%;
-  overflow: scroll;
-}
-.index .write-btn {
-  display: flex;
-  justify-items: center;
-  align-items: center;
-  position: fixed;
-  background: #21c9c6;
-  width: 65px;
-  height: 65px;
-  border-radius: 50%;
-  right: 30px;
-  bottom: 40px;
-}
-.index .write-btn .write-img {
-  height: 50%;
 }
 

@@ -23,12 +23,10 @@ _core["default"].page({
   // },
   mixins: [_test["default"]],
   data: {
-    articles: [],
-    num: 0
+    currentIndex: 0,
+    titleSelPositon: []
   },
   created: function created() {
-    var _this = this;
-
     wx.request({
       url: 'https://www.dzyong.com/blog/php/article/selectAll/',
       //仅为示例，并非真实的接口地址
@@ -36,14 +34,67 @@ _core["default"].page({
         'content-type': 'application/json' // 默认值
 
       },
-      success: function success(res) {
-        console.log(res.data);
-        _this.articles = res.data;
-        console.log(_this.articles[0].title);
+      success: function success(res) {// console.log(res.data);
+        // this.articles = res.data;
+        // console.log(this.articles[0].title);
       }
+    });
+  },
+  onShow: function onShow() {
+    var _this = this;
+
+    //获取tab每项坐标
+    var query = wx.createSelectorQuery(); // 创建节点查询器 query
+
+    query.selectAll('.titleSel').boundingClientRect(); // 这段代码的意思是选择Id=productServe的节点，获取节点位置信息的查询请求
+
+    query.selectViewport().scrollOffset(); // 这段代码的意思是获取页面滑动位置的查询请求
+
+    query.exec(function (res) {
+      _this.titleSelPositon = res[0];
     });
   },
   computed: {// ...mapState([ 'counter' ]),
   },
-  methods: {}
-}, {info: {"components":{"slide-view":{"path":"..\\$vendor\\miniprogram-slide-view\\miniprogram_dist\\index"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"slide-view":{"path":"..\\$vendor\\miniprogram-slide-view\\miniprogram_dist\\index"}},"on":{}}, handlers: {}, models: {} }, {info: {"components":{"slide-view":{"path":"..\\$vendor\\miniprogram-slide-view\\miniprogram_dist\\index"}},"on":{}}, handlers: {}, models: {} });
+  methods: {
+    //swiper切换时会调用
+    pagechange: function pagechange(e) {
+      if ('touch' === e.$wx.detail.source) {
+        this.currentIndex = e.$wx.detail.current;
+      }
+    },
+    //用户点击tab时调用
+    titleClick: function titleClick(e) {
+      console.log(e);
+      this.currentIndex = e.currentTarget.dataset.idx;
+    }
+  }
+}, {info: {"components":{"tab":{"path":"..\\components\\tab"},"slide-view":{"path":"..\\$vendor\\miniprogram-slide-view\\miniprogram_dist\\index"}},"on":{}}, handlers: {'5-128': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.titleClick($event)
+      })();
+    
+  }},'5-129': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.titleClick($event)
+      })();
+    
+  }},'5-130': {"tap": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.titleClick($event)
+      })();
+    
+  }},'5-131': {"change": function proxy () {
+    var $event = arguments[arguments.length - 1];
+    var _vm=this;
+      return (function () {
+        _vm.pagechange($event)
+      })();
+    
+  }}}, models: {} });

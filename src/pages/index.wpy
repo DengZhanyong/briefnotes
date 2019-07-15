@@ -1,7 +1,75 @@
 <style lang="less">
-.container{
+page{
+height: 100%;
+}
+.index {
   width: 100%;
-  text-align:left;
+  height: 100%;
+  .tab {
+    height: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    .title {
+      position: relative;
+      width: 100%;
+      height: 88rpx;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      border-bottom: 1px solid #dddddd;
+      .titleSel {
+        color: #5f6fee;
+        font-size: 32rpx;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 10px
+      }
+      .headerLineSel {
+        position: absolute;
+        background: #5f6fee;
+        height: 6rpx;
+        margin-top: 10rpx;
+        transition: all 0.5s;
+        bottom: 0;
+      }
+    }
+    .swiper {
+      width: 100%;
+      flex: 1;
+      min-height: calc(100% - 55px);
+      overflow: auto;
+      .recordItem {
+        margin-top: 10rpx;
+        background-color: white;
+        padding-bottom: 20rpx;
+        padding-top: 20rpx;
+      }
+      .swiper-item{
+        min-height: 100%;
+        overflow: scroll;
+      }
+    }
+  }
+
+  .write-btn {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    position: fixed;
+    background: rgb(33, 201, 198);
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    right: 30px;
+    bottom: 40px;
+    .write-img {
+      height: 50%;
+    }
+  }
 }
 </style>
 <wxs module="m1" lang="babel">
@@ -16,69 +84,135 @@ const getTime = (time) => {
 module.exports.getTime = getTime;
 </wxs>
 <template>
-  <div>
-    <span>测试请求数据</span>
-    <div v-for="(article) in articles" :key="article.id">
-      <text>{{article.title}}</text>
+  <view class="index">
+    <!-- <tab :title="['标题1','标题2','标题3','标题4']">
+      <view slot="c1">内容1</view>
+      <view slot="c2">内容2</view>
+      <view slot="c3">内容3</view>
+      <view slot="c4">内容4</view>
+    </tab> -->
+    <view class='tab'>
+      <!--Tab布局-->
+      <view class='title'>
+        <view class='titleSel' bindtap='titleClick' data-idx='0'>
+          <text>推荐</text>
+        </view>
+        <view class='titleSel' bindtap='titleClick' data-idx='1'>
+          <text>日记</text>
+        </view>
+        <view class='titleSel' bindtap='titleClick' data-idx='2'>
+          <text>专题栏目</text>
+        </view>
+        <hr class="headerLineSel" style="left:{{titleSelPositon[currentIndex].left}}px;width:{{titleSelPositon[currentIndex].width}}px" />
+      </view>
+
+      <!--内容布局-->
+      <swiper class='swiper' bindchange='pagechange' current='{{currentIndex}}' style='width:100%;overflow:auto;'>
+        <swiper-item class='swiper-item'>
+          <view>
+            <view class='name'>内容1</view>
+            <view class='name'>内容1</view>
+            <view class='name'>内容1</view>
+            <view class='name'>内容1</view>
+            <view class='name'>内容1</view>
+            <view class='name'>内容1</view>
+            <view class='name'>内容1</view>
+            <view class='name'>内容1</view>
+            <view class='name'>内容1</view><view class='name'>内容1</view>
+          </view>
+        </swiper-item>
+        <swiper-item class='swiper-item'>
+          <view>
+            <view class='name'>内容2</view>
+          </view>
+        </swiper-item>
+        <swiper-item class='swiper-item'>
+          <view>
+            <view class='name'>内容3</view>
+          </view>
+        </swiper-item>
+      </swiper>
+    </view>
+
+    <div class="write-btn">
+      <img src="../assets/images/logo-f.png" alt="" class="write-img" mode="aspectFit" />
     </div>
-  </div>
+  </view>
 </template>
 
-<script> 
-  import wepy from '@wepy/core'
-  import eventHub from '../common/eventHub';
-  import { mapState } from '@wepy/x';
-  import store from '../store';
-  import testMixin from '../mixins/test'
+<script>
+import wepy from '@wepy/core';
+import eventHub from '../common/eventHub';
+import { mapState } from '@wepy/x';
+import store from '../store';
+import testMixin from '../mixins/test';
 
-  wepy.page({
-    store,
+wepy.page({
+  store,
 
-    // hooks: {
-    //   // Page 级别 hook, 只对当前 Page 的 setData 生效。
-    //   'before-setData': function (data) {
-    //     console.log('数据发生了改变：',data)
-    //     return data
-    //   }
-    // },
+  // hooks: {
+  //   // Page 级别 hook, 只对当前 Page 的 setData 生效。
+  //   'before-setData': function (data) {
+  //     console.log('数据发生了改变：',data)
+  //     return data
+  //   }
+  // },
 
-    mixins: [testMixin],
+  mixins: [testMixin],
 
-    data: {
-      articles:[],
-      num: 0
+  data: {
+    currentIndex: 0,
+    titleSelPositon: []
+  },
+
+  created() {
+    wx.request({
+      url: 'https://www.dzyong.com/blog/php/article/selectAll/', //仅为示例，并非真实的接口地址
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: res => {
+        // console.log(res.data);
+        // this.articles = res.data;
+        // console.log(this.articles[0].title);
+      }
+    });
+  },
+  onShow() {
+    //获取tab每项坐标
+    const query = wx.createSelectorQuery(); // 创建节点查询器 query
+    query.selectAll('.titleSel').boundingClientRect(); // 这段代码的意思是选择Id=productServe的节点，获取节点位置信息的查询请求
+    query.selectViewport().scrollOffset(); // 这段代码的意思是获取页面滑动位置的查询请求
+    query.exec(res => {
+      this.titleSelPositon = res[0];
+    });
+  },
+
+  computed: {
+    // ...mapState([ 'counter' ]),
+  },
+
+  methods: {
+    //swiper切换时会调用
+    pagechange(e) {
+      if ('touch' === e.$wx.detail.source) {
+        this.currentIndex = e.$wx.detail.current
+      }
     },
-
-    created () {
-      wx.request({
-        url: 'https://www.dzyong.com/blog/php/article/selectAll/', //仅为示例，并非真实的接口地址
-        header: {
-          'content-type': 'application/json' // 默认值
-        },
-        success:(res)=> {
-          console.log(res.data)
-          this.articles = res.data
-          console.log(this.articles[0].title)
-        }
-      })
-    },
-
-    computed: {
-      // ...mapState([ 'counter' ]),
-
-    },
-
-    methods: {
-    },
-
-    
-  });
+    //用户点击tab时调用
+    titleClick: function(e) {
+      console.log(e);
+      this.currentIndex = e.currentTarget.dataset.idx;
+    }
+  }
+});
 </script>
 <config>
 {
     navigationBarTitleText: '首页标题',
     usingComponents: {
       "slide-view": "module:miniprogram-slide-view",
+      "tab": "../components/tab",
     }
 }
 </config>

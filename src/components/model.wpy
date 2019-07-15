@@ -1,0 +1,19 @@
+<style lang="less">
+
+</style>
+<template>
+</template>
+
+<script>
+  import wepy from '@wepy/core'
+  wepy.component({
+    props:{
+      title: {
+        default: '默认文字',
+        type: String
+      },
+    },
+    methods:{
+    }
+  })
+</script>

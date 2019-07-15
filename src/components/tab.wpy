@@ -1,0 +1,137 @@
+<style lang="less" scoped>
+.tab {
+  height: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  .title {
+    position: relative;
+    width: 100%;
+    height: 88rpx;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-bottom: 1px solid #dddddd;
+    .titleSel {
+      color: #5f6fee;
+      font-size: 32rpx;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 10px;
+    }
+    .headerLineSel {
+      position: absolute;
+      background: #5f6fee;
+      height: 6rpx;
+      margin-top: 10rpx;
+      transition: all 0.5s;
+      bottom: 0;
+    }
+  }
+  .swiper {
+    width: 100%;
+    flex: 1;
+    height: 100vh;
+    overflow: scroll;
+    .recordItem {
+      margin-top: 10rpx;
+      background-color: white;
+      padding-bottom: 20rpx;
+      padding-top: 20rpx;
+    }
+  }
+}
+</style>
+<template>
+  <view class='tab'>
+    <!--Tab布局-->
+    <view id="aa"></view>
+    <view class='title'>
+      <view wx:for="{{title}}" wx:key="{{item}}" class='aa' bindtap='titleClick' data-idx='{{index}}'>
+        <text>{{item}}</text>
+      </view>
+      <hr class="headerLineSel" style="left:{{titleSelPositon[currentIndex].left}}px;width:{{titleSelPositon[currentIndex].width}}px" />
+    </view>
+
+    <!--内容布局-->
+    <swiper class='swiper' bindchange='pagechange' current='{{currentIndex}}'>
+      <swiper-item class='swiper'>
+        <view>
+          <slot name="c1"></slot>
+        </view>
+      </swiper-item>
+      <swiper-item class='swiper'>
+        <view>
+          <slot name="c2"></slot>
+        </view>
+      </swiper-item>
+      <swiper-item class='swiper'>
+        <view>
+          <slot name="c3"></slot>
+        </view>
+      </swiper-item>
+      <swiper-item class='swiper'>
+        <view>
+          <slot name="c4"></slot>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+</template>
+
+<script>
+import wepy from '@wepy/core';
+wepy.component({
+  options: {
+    multipleSlots: true // 在组件定义时的选项中启用多slot支持
+  },
+  props: {
+    currentIndex: {
+      default: 1,
+      type: Number
+    },
+    title: {
+      default: [],
+      type: Array
+    },
+    className: {
+      default: 'first',
+      type: Array
+    }
+  },
+  data: {
+    titleSelPositon: []
+  },
+  onReady() {
+    //获取tab每项坐标
+    const query = wx.createSelectorQuery().in(this)
+    query.select('#aa').boundingClientRect(function(res){
+      console.log(res)
+      res.top // 这个组件内 #the-id 节点的上边界坐标
+    }).exec()
+    // const query = wx.createSelectorQuery(); // 创建节点查询器 query
+    // query.selectAll('.titleSel').boundingClientRect(); // 这段代码的意思是选择Id=productServe的节点，获取节点位置信息的查询请求
+    // query.selectViewport().scrollOffset(); // 这段代码的意思是获取页面滑动位置的查询请求
+    // query.exec(res => {
+    //   console.log(res)
+    //   this.titleSelPositon = res[0];
+    // });
+  },
+  methods: {
+    //swiper切换时会调用
+    pagechange(e) {
+      if ('touch' === e.$wx.detail.source) {
+        this.currentIndex = e.$wx.detail.current;
+      }
+    },
+    //用户点击tab时调用
+    titleClick: function(e) {
+      console.log(e);
+      this.currentIndex = e.currentTarget.dataset.idx;
+    }
+  }
+});
+</script>
